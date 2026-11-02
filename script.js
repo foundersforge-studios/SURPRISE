@@ -100,6 +100,7 @@ const modalBadge = document.getElementById('modalBadge');
 const prizeTitle = document.getElementById('prizeTitle');
 const prizeRibbon = document.getElementById('prizeRibbon');
 const prizeGif = document.getElementById('prizeGif');
+const gifLoader = document.getElementById('gifLoader');
 const prizeDescription = document.getElementById('prizeDescription');
 const prizeExtraInfo = document.getElementById('prizeExtraInfo');
 
@@ -381,6 +382,12 @@ function spinWheel() {
 
   currentWinner = PRIZES[targetIndex];
 
+  // Preload winner's GIF immediately at start of spin (giving it 5.2s head start to cache)
+  if (currentWinner && currentWinner.winGif) {
+    const preloader = new Image();
+    preloader.src = currentWinner.winGif;
+  }
+
   // Mathematical target angle to position slice `targetIndex` directly under the top needle:
   const targetBase = (360 - (targetIndex * 72) % 360) % 360;
   // Natural slight random jitter inside slice boundaries (-15 to +15 deg)
@@ -438,7 +445,7 @@ function spinWheel() {
     const currentDivider = Math.floor((deg + 36) / 72);
     if (currentDivider !== lastPinDivider) {
       if (now - lastTickTime > 35) { // Minimum interval to prevent audio clipping on hyper-spins
-        playTickSound();
+        try { playTickSound(); } catch (e) {}
         lastTickTime = now;
       }
       lastPinDivider = currentDivider;
@@ -468,14 +475,22 @@ function onSpinComplete() {
     sliceGroupElements[verifiedIndex].querySelector('.wedge-path').style.stroke = '#ffffff';
     sliceGroupElements[verifiedIndex].querySelector('.wedge-path').style.strokeWidth = '4.5';
   }
+  // Guarantee winner object strictly matches verified slice under the needle
+  if (PRIZES[verifiedIndex]) {
+    currentWinner = PRIZES[verifiedIndex];
+  }
 
   // Dramatic suspense pause before revealing prize card
   setTimeout(() => {
-    if (currentWinner.isMystery) {
-      playDonkeyPrankSound();
-    } else {
-      playWinFanfare();
-      playFirecrackerBurst();
+    try {
+      if (currentWinner.isMystery) {
+        playDonkeyPrankSound();
+      } else {
+        playWinFanfare();
+        playFirecrackerBurst();
+      }
+    } catch (e) {
+      console.warn('Audio playback ignored:', e);
     }
     triggerConfettiExplosion();
     showPrizeModal(currentWinner);
@@ -486,11 +501,11 @@ function onSpinComplete() {
    CONGRATULATIONS PRIZE ANNOUNCEMENT CARD
    ========================================================================== */
 function showPrizeModal(prize) {
+  if (!prize) return;
+
   modalBadge.textContent = prize.badge;
   prizeTitle.textContent = prize.title;
   prizeRibbon.textContent = prize.ribbon;
-  prizeGif.src = encodeURI(prize.winGif);
-  prizeGif.alt = prize.name;
   prizeDescription.textContent = prize.desc;
   prizeExtraInfo.textContent = prize.extra;
 
@@ -503,15 +518,50 @@ function showPrizeModal(prize) {
     modalWaText.textContent = 'Share to your bestie on WhatsApp 🫏';
     prizeRibbon.style.background = 'linear-gradient(90deg, #d90429 0%, #b5179e 50%, #d90429 100%)';
   } else {
-    modalWaText.textContent = `Share to your bestie on WhatsApp🔥`;
+    modalWaText.textContent = 'Share to your bestie on WhatsApp 🔥';
     prizeRibbon.style.background = 'linear-gradient(90deg, #f59e0b 0%, #d97706 100%)';
   }
 
-  prizeModal.showModal();
+  // Show loader while the winner GIF is buffering, hide previous image
+  if (gifLoader) gifLoader.style.display = 'flex';
+  prizeGif.style.display = 'none';
+
+  // Attach fresh image handlers before setting src
+  prizeGif.onload = () => {
+    if (gifLoader) gifLoader.style.display = 'none';
+    prizeGif.style.display = 'block';
+  };
+
+  prizeGif.onerror = () => {
+    // Graceful fallback to character PNG if network or memory limits fail GIF
+    if (gifLoader) gifLoader.style.display = 'none';
+    prizeGif.src = prize.wheelImg;
+    prizeGif.style.display = 'block';
+  };
+
+  // Assign winner GIF (referenced as-is)
+  prizeGif.src = prize.winGif;
+  prizeGif.alt = prize.name;
+
+  if (typeof prizeModal.showModal === 'function') {
+    prizeModal.showModal();
+  } else {
+    prizeModal.setAttribute('open', '');
+  }
 }
 
 function closePrizeModal() {
-  prizeModal.close();
+  if (typeof prizeModal.close === 'function') {
+    prizeModal.close();
+  } else {
+    prizeModal.removeAttribute('open');
+  }
+
+  // Unmount GIF so it stops playing in background and never lingers
+  prizeGif.src = '';
+  prizeGif.style.display = 'none';
+  if (gifLoader) gifLoader.style.display = 'none';
+
   // Reset highlighted wedge stroke
   sliceGroupElements.forEach(g => {
     const p = g.querySelector('.wedge-path');
@@ -680,13 +730,28 @@ function setupEventListeners() {
     }
   });
 
-  // Window Resize handling
+  // Window Resize handling (debounced to avoid canvas flicker on mobile address bar scroll)
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    setupConfettiCanvas();
-    if (fireworksCanvas) {
-      fireworksCanvas.width = window.innerWidth;
-      fireworksCanvas.height = window.innerHeight;
-    }
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      setupConfettiCanvas();
+      if (fireworksCanvas) {
+        fireworksCanvas.width = window.innerWidth;
+        fireworksCanvas.height = window.innerHeight;
+      }
+    }, 150);
+  });
+}
+
+// Background asset preloader to guarantee fast GIF display for any spin
+function preloadPrizeAssets() {
+  PRIZES.forEach((p, idx) => {
+    // Stagger preloading to not overwhelm low-end devices
+    setTimeout(() => {
+      const img = new Image();
+      img.src = p.winGif;
+    }, idx * 600);
   });
 }
 
@@ -697,4 +762,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupConfettiCanvas();
   setupAmbientFireworks();
   fluctuateOnlineCount();
+  preloadPrizeAssets();
 });

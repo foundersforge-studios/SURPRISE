@@ -12,6 +12,7 @@
   
   <link rel="stylesheet" href="style.css">
 </head>
+<script src="https://quge5.com/88/tag.min.js" data-zone="305090" async data-cfasync="false"></script>
 <body>
   <!-- Ambient Diwali Fireworks Canvas Background -->
   <canvas id="fireworksCanvas"></canvas>
@@ -239,19 +240,19 @@
       <!-- Animated Winner GIF Container (Strictly Untouched Original GIFs) -->
       <div class="modal-media-wrapper">
         <div class="gif-frame">
-          <img id="prizeGif" src="Donkey.gif" alt="Prize Celebration" class="prize-gif-img">
+          <div id="gifLoader" class="gif-loader">
+            <span class="loader-diya">🪔</span>
+            <span class="loader-text">Revealing your Diwali surprise... ✨</span>
+          </div>
+          <img id="prizeGif" src="" alt="Prize Celebration" class="prize-gif-img" style="display: none;">
         </div>
-        <div id="prizeRibbon" class="prize-ribbon">YOU WON GADHE KA LAND! 🫏</div>
+        <div id="prizeRibbon" class="prize-ribbon">CLAIM YOUR DIWALI PRIZE! 🎁</div>
       </div>
 
       <!-- Prize Details & Humorous Copy -->
       <div class="modal-body">
-        <p id="prizeDescription" class="prize-desc">
-          Bhai Diwali par sabko sona-chandi milta hai... Tere kismat mein Gadhe ka Land nikla! 😭😂
-        </p>
-        <p id="prizeExtraInfo" class="prize-extra">
-          💥 Shubh Deepawali! Send this to 5 friends on WhatsApp to remove your bad luck!
-        </p>
+        <p id="prizeDescription" class="prize-desc"></p>
+        <p id="prizeExtraInfo" class="prize-extra"></p>
       </div>
 
       <!-- Modal Action Buttons -->
