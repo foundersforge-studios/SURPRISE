@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🪔 Diwali Spin & Win Lucky Draw 2026 | Mega Dhamaka 🎁</title>
+  
+  <!-- Google Fonts for Festive Luxury Styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Poppins:wght@400;600;700;800;900&family=Rozha+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Diwali Fireworks Canvas Background -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Top Festive Decorative Toran & Diyas -->
+  <header class="festive-header">
+    <div class="toran-garland">
+      <span class="marigold">🌼</span><span class="mango-leaf">🍃</span>
+      <span class="marigold">🌸</span><span class="mango-leaf">🍃</span>
+      <span class="marigold">🌼</span><span class="mango-leaf">🍃</span>
+      <span class="marigold">🌸</span><span class="mango-leaf">🍃</span>
+      <span class="marigold">🌼</span>
+    </div>
+
+    <!-- Hanging Festive Akash Kandils (Lanterns) -->
+    <div class="lantern lantern-left" aria-hidden="true">
+      <div class="lantern-body">🏮</div>
+      <div class="lantern-streamers"></div>
+    </div>
+    <div class="lantern lantern-right" aria-hidden="true">
+      <div class="lantern-body">🏮</div>
+      <div class="lantern-streamers"></div>
+    </div>
+
+    <div class="header-content">
+      <div class="diwali-greeting">
+        <span class="flaming-diya">🪔</span>
+        <span class="hindi-text">शुभ दीपावली २०२६</span>
+        <span class="flaming-diya">🪔</span>
+      </div>
+      <h1 class="main-title">
+        <span class="sparkle-icon">✨</span>
+        DIWALI DHAMAKA
+        <span class="sparkle-icon">✨</span>
+        <br>
+        <span class="subtitle-highlight">SPIN & WIN LUCKY DRAW</span>
+      </h1>
+      <p class="tagline">Spin the sacred wheel & claim your guaranteed mega Diwali surprise!</p>
+      
+      <!-- Live Status Pill -->
+      <div class="live-badge">
+        <span class="pulse-dot"></span>
+        <span id="liveOnlineCount">18,429</span> people spinning right now • <strong>100% Free Gifts</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Wheel Section -->
+  <main class="wheel-section">
+    <!-- The Wheel Assembly -->
+    <div class="wheel-stage">
+      <!-- Glow Aura behind wheel -->
+      <div class="wheel-halo"></div>
+
+      <!-- Top Pointer / Ticker Needle -->
+      <div class="wheel-pointer-wrapper">
+        <div id="wheelPointer" class="wheel-pointer">
+          <svg viewBox="0 0 40 50" class="pointer-svg">
+            <defs>
+              <linearGradient id="needleGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff5c0" />
+                <stop offset="40%" stop-color="#ffd700" />
+                <stop offset="80%" stop-color="#cc8800" />
+                <stop offset="100%" stop-color="#7a4b00" />
+              </linearGradient>
+              <filter id="pointerShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.8" />
+              </filter>
+            </defs>
+            <polygon points="20,48 5,6 35,6" fill="url(#needleGold)" filter="url(#pointerShadow)" stroke="#ffeaa7" stroke-width="1.5" />
+            <!-- Gemstone Center -->
+            <circle cx="20" cy="14" r="7" fill="#d90429" stroke="#fff" stroke-width="1.5" />
+            <circle cx="18" cy="12" r="2" fill="#fff" opacity="0.8" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Rotating Wheel Container -->
+      <div class="wheel-wrapper">
+        <svg id="luckyWheelSvg" viewBox="0 0 520 520" class="wheel-svg" aria-label="Diwali Lucky Wheel">
+          <defs>
+            <!-- Drop shadow for avatars -->
+            <filter id="avatarGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.85"/>
+            </filter>
+            <!-- Outer gold rim bevel -->
+            <radialGradient id="goldRimGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="85%" stop-color="#996515" />
+              <stop offset="92%" stop-color="#ffd700" />
+              <stop offset="96%" stop-color="#fff8db" />
+              <stop offset="100%" stop-color="#593b0a" />
+            </radialGradient>
+            <!-- Hub metallic gradient -->
+            <radialGradient id="hubGrad" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#fff9db" />
+              <stop offset="40%" stop-color="#f59e0b" />
+              <stop offset="85%" stop-color="#b45309" />
+              <stop offset="100%" stop-color="#451a03" />
+            </radialGradient>
+
+            <!-- Slice Gradients (5 Segments) -->
+            <!-- 0: Mia Khalifa (Crimson / Magenta) -->
+            <radialGradient id="grad-0" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ff1493" />
+              <stop offset="70%" stop-color="#b5179e" />
+              <stop offset="100%" stop-color="#560bad" />
+            </radialGradient>
+            <!-- 1: Jonny Sins (Royal Purple / Violet) -->
+            <radialGradient id="grad-1" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#7209b7" />
+              <stop offset="70%" stop-color="#3a0ca3" />
+              <stop offset="100%" stop-color="#1e055a" />
+            </radialGradient>
+            <!-- 2: Mystery Box (Diwali Gold / Amber) -->
+            <radialGradient id="grad-2" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffea00" />
+              <stop offset="60%" stop-color="#ffaa00" />
+              <stop offset="100%" stop-color="#e85d04" />
+            </radialGradient>
+            <!-- 3: Sunny Leone (Emerald Teal / Golden Cyan) -->
+            <radialGradient id="grad-3" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#06d6a0" />
+              <stop offset="70%" stop-color="#059669" />
+              <stop offset="100%" stop-color="#064e3b" />
+            </radialGradient>
+            <!-- 4: Lana Rhoades (Fiery Ruby / Sunset Orange) -->
+            <radialGradient id="grad-4" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ff5400" />
+              <stop offset="70%" stop-color="#d00000" />
+              <stop offset="100%" stop-color="#6a040f" />
+            </radialGradient>
+
+            <!-- Drop Shadow for Character Faces -->
+            <filter id="faceShadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.95"/>
+            </filter>
+          </defs>
+
+          <!-- Outer Gold Bezel -->
+          <circle cx="260" cy="260" r="255" fill="none" stroke="url(#goldRimGrad)" stroke-width="18" />
+          <circle cx="260" cy="260" r="245" fill="none" stroke="#2a1602" stroke-width="3" />
+          <circle cx="260" cy="260" r="235" fill="#180424" />
+
+          <!-- Dynamic Blinking LED Lights on the Outer Rim -->
+          <g id="rimLightsGroup"></g>
+
+          <!-- The Rotating Inner Wheel Elements -->
+          <g id="wheelRotator">
+            <!-- Wedges & Faces Group (Injected by JS) -->
+            <g id="slicesContainer"></g>
+
+            <!-- Inner Gold Dividers & Ring -->
+            <circle cx="260" cy="260" r="230" fill="none" stroke="#ffd700" stroke-width="4" />
+            <circle cx="260" cy="260" r="62" fill="none" stroke="#ffd700" stroke-width="3" />
+          </g>
+
+          <!-- Static / Interactive Center Spin Hub -->
+          <g id="centerSpinHub" class="center-hub-interactive">
+            <circle cx="260" cy="260" r="54" fill="#0d0216" stroke="#ffd700" stroke-width="5" />
+            <circle cx="260" cy="260" r="46" fill="url(#hubGrad)" stroke="#fff275" stroke-width="2.5" />
+            <!-- Diya icon & SPIN text -->
+            <text x="260" y="247" text-anchor="middle" font-size="18">🪔</text>
+            <text x="260" y="274" text-anchor="middle" font-family="'Cinzel Decorative', 'Poppins', sans-serif" font-weight="900" font-size="16" fill="#ffffff" stroke="#3d1f00" stroke-width="2.5" paint-order="stroke fill" letter-spacing="1.5px">SPIN</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Action Buttons Under The Wheel -->
+    <div class="under-wheel-actions">
+      <!-- Big Golden Spin Button -->
+      <button id="spinBtn" class="spin-cta-btn">
+        <span class="btn-sparkle">✨</span>
+        <span class="btn-text">SPIN TO WIN NOW</span>
+        <span class="btn-sparkle">💥</span>
+      </button>
+
+      <!-- Share on WhatsApp Button under the wheel -->
+      <a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.456h.005c6.554 0 11.89-5.336 11.893-11.893a11.821 11.821 0 00-3.48-8.414z"/>
+        </svg>
+        <span class="wa-btn-content">
+          <strong>Share on WhatsApp</strong>
+          <small>Surprise your Friends!</small>
+        </span>
+      </a>
+    </div>
+
+    <!-- Festive Diwali Offer Ticker / Trust Badges -->
+    <div class="diwali-perks">
+      <div class="perk-item">
+        <span class="perk-icon">🪔</span>
+        <span>100% Free Diwali Dhamaka</span>
+      </div>
+      <div class="perk-item">
+        <span class="perk-icon">⚡</span>
+        <span>Instant Prize Reveal</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Congratulations Prize Announcement Modal (<dialog>) -->
+  <dialog id="prizeModal" class="prize-modal" aria-labelledby="prizeTitle" aria-modal="true">
+    <div class="modal-card">
+      <!-- Festive Golden Border Accents -->
+      <div class="card-corner corner-tl"></div>
+      <div class="card-corner corner-tr"></div>
+      <div class="card-corner corner-bl"></div>
+      <div class="card-corner corner-br"></div>
+
+      <!-- Close Button -->
+      <button id="closeModalBtn" class="modal-close" aria-label="Close dialog">&times;</button>
+
+      <!-- Card Header -->
+      <div class="modal-header">
+        <div class="modal-diyas">
+          <span class="diya-float">🪔</span>
+          <span class="header-badge" id="modalBadge">🎉 BUMPER DIWALI PRIZE 🪔</span>
+          <span class="diya-float">🪔</span>
+        </div>
+        <h2 id="prizeTitle" class="prize-title">CONGRATULATIONS!</h2>
+      </div>
+
+      <!-- Animated Winner GIF Container (Strictly Untouched Original GIFs) -->
+      <div class="modal-media-wrapper">
+        <div class="gif-frame">
+          <img id="prizeGif" src="Donkey.gif" alt="Prize Celebration" class="prize-gif-img">
+        </div>
+        <div id="prizeRibbon" class="prize-ribbon">YOU WON GADHE KA LAND! 🫏</div>
+      </div>
+
+      <!-- Prize Details & Humorous Copy -->
+      <div class="modal-body">
+        <p id="prizeDescription" class="prize-desc">
+          Bhai Diwali par sabko sona-chandi milta hai... Tere kismat mein Gadhe ka Land nikla! 😭😂
+        </p>
+        <p id="prizeExtraInfo" class="prize-extra">
+          💥 Shubh Deepawali! Send this to 5 friends on WhatsApp to remove your bad luck!
+        </p>
+      </div>
+
+      <!-- Modal Action Buttons -->
+      <div class="modal-actions">
+        <!-- WhatsApp Brag / Troll Share Button -->
+        <a id="modalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="modal-wa-btn">
+          <svg class="whatsapp-icon" viewBox="0 0 24 24" width="22" height="22">
+            <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.456h.005c6.554 0 11.89-5.336 11.893-11.893a11.821 11.821 0 00-3.48-8.414z"/>
+          </svg>
+          <span id="modalWaText">Share Prize on WhatsApp & Troll Friends</span>
+        </a>
+
+        <!-- Spin Again Button -->
+        <button id="spinAgainBtn" class="spin-again-btn">
+          <span>🔄</span> Spin Again
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Canvas for Confetti & Firecracker Bursts -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
